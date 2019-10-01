@@ -1,0 +1,362 @@
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Random Shooter</title>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+var c=document.getElementById("canvas");
+var ctx=c.getContext("2d");
+ctx.canvas.width = window.innerWidth;
+ctx.canvas.height = window.innerHeight;
+document.documentElement.style.overflow = 'hidden';
+
+var keys = [];
+
+var p1s = false;
+var p2s = false;
+
+var p1cs = true;
+var p2cs = true;
+
+
+var player1X = Math.round(ctx.canvas.width/4);
+var player1Y = Math.round(ctx.canvas.height/2);
+
+var player2X = Math.round(ctx.canvas.width*3/4);
+var player2Y = Math.round(ctx.canvas.height/2);
+
+var p1facingup = false;
+var p1facingdown = false;
+var p1facingleft = false;
+var p1facingright = true;
+
+
+var p2facingup = false;
+var p1facingdown = false;
+var p1facingleft = false;
+var p1facingright = true;
+
+var p1facing = "right";
+var p2facing = "left";
+
+var p1score = 0;
+var p2score = 0;
+
+
+function killPrevPlayer(player){
+if(player == "player1"){
+ctx.fillStyle = "white";
+ctx.fillRect(player1X - 1, player1Y - 20, 30, 30);
+} else if(player == "player2"){
+ctx.fillStyle = "white";
+ctx.fillRect(player2X - 1, player2Y - 20, 30, 30);
+}
+}
+
+function shootLaserP2(){
+setTimeout(function(){
+p2cs = false;
+setTimeout(function(){
+p2cs = true;
+}, 1000);
+}, 1000);
+
+
+
+if(p2facing == "left"){
+ctx.fillStyle = "purple";
+ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
+if(player2X - 12 >= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
+p2score++
+
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+}
+} else if(p2facing == "right"){
+ctx.fillStyle = "purple";
+ctx.fillRect(player2X + 12, player2Y + 2, ctx.canvas.width, 4);
+
+
+
+if(player2X - 12 <= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
+p2score++
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+}
+
+
+} else if(p2facing == "up"){
+ctx.fillStyle = "purple";
+ctx.fillRect(player2X + 2, player2Y - 2, 4, -ctx.canvas.height);
+
+
+if(player2Y - 12 >= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
+
+p2score++
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+}
+
+} else if(p2facing == "down"){
+ctx.fillStyle = "purple";
+ctx.fillRect(player2X + 2, player2Y + 12, 4, ctx.canvas.height);
+
+
+if(player2Y - 12 <= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
+
+p2score++
+
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+
+}
+
+}
+
+
+}
+
+
+function shootLaserP1(){
+setTimeout(function(){
+p1cs = false;
+setTimeout(function(){
+p1cs = true;
+}, 1000);
+}, 1000);
+
+
+ctx.fillStyle = "purple";
+
+if(p1facing == "left"){
+
+
+ctx.fillStyle = "purple";
+ctx.fillRect(player1X - 12, player1Y + 2, -ctx.canvas.width, 4);
+if(player1X - 12 >= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
+p1score++;
+
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+}
+} else if(p1facing == "right"){
+
+ctx.fillStyle = "purple";
+ctx.fillRect(player1X + 12, player1Y + 2, ctx.canvas.width, 4);
+
+
+
+if(player1X - 12 <= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
+p1score++;
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+}
+
+
+} else if(p1facing == "up"){
+ctx.fillStyle = "purple";
+ctx.fillRect(player1X + 2, player1Y - 2, 4, -ctx.canvas.height);
+
+
+if(player1Y - 12 >= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
+
+p1score++;
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+}
+
+} else if(p1facing == "down"){
+
+
+ctx.fillStyle = "purple";
+ctx.fillRect(player1X + 2, player1Y + 12, 4, ctx.canvas.height);
+
+
+if(player1Y - 12 <= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
+
+p1score++;
+
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+
+}
+
+}
+
+}
+
+
+function drawPlayer1(){
+ctx.fillStyle = "red";
+ctx.fillRect(player1X, player1Y, 10, 10);
+}
+
+function drawPlayer2(){
+ctx.fillStyle = "blue";
+ctx.fillRect(player2X, player2Y, 10, 10);
+}
+
+function drawGround(){
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+
+
+
+function loop(){
+
+drawGround();
+drawPlayer1();
+drawPlayer2();
+
+if(player1X >= ctx.canvas.width || player1X <= 0 || player1Y >= ctx.canvas.height || player1Y <= 0){
+player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+}
+
+
+
+if(player2X >= ctx.canvas.width || player2X <= 0 || player2Y >= ctx.canvas.height || player2Y <= 0){
+player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+}
+
+
+
+ctx.font = "48px serif";
+ctx.fillStyle = "red";
+ctx.fillText(p1score, 50, 100);
+ctx.fillStyle = "blue";
+ctx.fillText(p2score, ctx.canvas.width-50, 100);
+
+
+document.body.addEventListener("keydown", function(e) {
+    keys[e.keyCode] = true;
+});
+
+
+document.body.addEventListener("keyup", function(e) {
+    keys[e.keyCode] = false;
+});
+
+
+if (keys[38]) {
+p1facing = "up";
+player1Y -= 7;
+}
+
+
+if (keys[39]) {
+p1facing = "right";
+player1X += 7;
+}
+
+if (keys[40]) {
+p1facing = "down";
+player1Y += 7;
+}
+
+if (keys[37]) {
+p1facing = "left";
+player1X -= 7;
+} if(keys[77] && p1cs == true){
+shootLaserP1();
+
+
+}
+
+
+
+
+
+
+
+if (keys[87]) {
+p2facing = "up";
+player2Y -= 7;
+}
+
+
+if (keys[68]) {
+p2facing = "right";
+player2X += 7;
+}
+
+if (keys[83]) {
+p2facing = "down";
+player2Y += 7;
+}
+
+if (keys[65]) {
+p2facing = "left";
+player2X -= 7;
+}
+
+if(keys[81] && p2cs == true){
+shootLaserP2();
+}
+
+requestAnimationFrame(loop);
+}
+
+loop();
+
+</script>
+
+<script>
+
+</script>
+</body>
+</html>
