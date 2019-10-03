@@ -25,6 +25,10 @@ var p2s = false;
 var p1cs = true;
 var p2cs = true;
 
+var p1battery = 120;
+var p2battery = 120;
+
+
 
 var player1X = Math.round(ctx.canvas.width/4);
 var player1Y = Math.round(ctx.canvas.height/2);
@@ -61,12 +65,16 @@ ctx.fillRect(player2X - 1, player2Y - 20, 30, 30);
 }
 
 function shootLaserP2(){
-setTimeout(function(){
-p2cs = false;
-setTimeout(function(){
-p2cs = true;
-}, 1000);
-}, 1000);
+	if(p2battery > 0){
+    	p2cs = true;
+    	p2battery -= 1;	
+    } else {
+    	p2cs = false;
+    	setTimeout(function(){
+        	p2cs = true;
+        	p2battery = 120;
+        }, 1500);
+    }
 
 
 
@@ -148,12 +156,16 @@ player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 
 function shootLaserP1(){
-setTimeout(function(){
-p1cs = false;
-setTimeout(function(){
-p1cs = true;
-}, 1000);
-}, 1000);
+	if(p1battery > 0){
+    	p1cs = true;
+    	p1battery -= 1;	
+    } else {
+    	p1cs = false;
+    	setTimeout(function(){
+        	p1cs = true;
+        	p1battery = 120;
+        }, 1500);
+    }
 
 
 ctx.fillStyle = "purple";
