@@ -25,8 +25,8 @@ var p2s = false;
 var p1cs = true;
 var p2cs = true;
 
-var p1battery = 120;
-var p2battery = 120;
+var p1battery = 60;
+var p2battery = 60;
 
 
 
@@ -77,11 +77,20 @@ function shootLaserP2(){
     }
 
 
+if( p1facing == "right" ){
+	player1X =  player1X + Math.floor(Math.random() * 21) - 18;
+} else if(p1facing == "left") {
+	player1X =  player1X + Math.floor(Math.random() * 21) - 3;
+} else if(p1facing == "down"){
+	player1Y =  player1Y + Math.floor(Math.random() * 21) - 18;
+} else if(p1facing == "up"){
+	player1Y =  player1Y + Math.floor(Math.random() * 21) - 3;
 
+}
 if(p2facing == "left"){
-ctx.fillStyle = "purple";
-ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
-if(player2X - 12 >= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
+	ctx.fillStyle = "purple";
+	ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
+	if(player2X - 12 >= player1X && player2Y + 2 >= player1Y && player2 + 6 <= player1Y + 10){
 p2score++
 p1battery = 120;
 p2battery = 120;
@@ -177,6 +186,18 @@ function shootLaserP1(){
         	p1battery = 120;
         }, 1500);
     }
+
+
+if( p1facing == "right" ){
+	player1X =  player1X + Math.floor(Math.random() * 21) - 18;
+} else if(p1facing == "left") {
+	player1X =  player1X + Math.floor(Math.random() * 21) - 3;
+} else if(p1facing == "down"){
+	player1Y =  player1Y + Math.floor(Math.random() * 21) - 18;
+} else if(p1facing == "up"){
+	player1Y =  player1Y + Math.floor(Math.random() * 21) - 3;
+
+}
 
 
 ctx.fillStyle = "purple";
