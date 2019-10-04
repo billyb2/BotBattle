@@ -3,6 +3,7 @@
 
 
 
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -75,7 +76,7 @@ function shootLaserP2(){
         	p2battery = 120;
         }, 1500);
     }
-
+/**
 
 if( p2facing == "right" ){
 	player2X =  player2X + Math.floor(Math.random() * 21) - 18;
@@ -86,7 +87,7 @@ if( p2facing == "right" ){
 } else if(p2facing == "up"){
 	player2Y =  player2Y + Math.floor(Math.random() * 21) - 3;
 
-}
+}**/
 if(p2facing == "left"){
 	ctx.fillStyle = "purple";
 	ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
@@ -187,7 +188,7 @@ function shootLaserP1(){
         }, 1500);
     }
 
-
+/**
 if( p1facing == "right" ){
 	player1X =  player1X + Math.floor(Math.random() * 21) - 18;
 } else if(p1facing == "left") {
@@ -198,7 +199,7 @@ if( p1facing == "right" ){
 	player1Y =  player1Y + Math.floor(Math.random() * 21) - 3;
 
 }
-
+**/
 
 ctx.fillStyle = "purple";
 
@@ -312,6 +313,7 @@ function loop(){
 drawGround();
 drawPlayer1();
 drawPlayer2();
+
 
 if(player1X >= ctx.canvas.width || player1X <= 0 || player1Y >= ctx.canvas.height || player1Y <= 0){
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
