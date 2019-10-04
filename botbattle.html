@@ -83,6 +83,9 @@ ctx.fillStyle = "purple";
 ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
 if(player2X - 12 >= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
 p2score++
+p1battery = 120;
+p2battery = 120;
+
 
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
@@ -101,6 +104,8 @@ ctx.fillRect(player2X + 12, player2Y + 2, ctx.canvas.width, 4);
 
 if(player2X - 12 <= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
 p2score++
+p1battery = 120;
+p2battery = 120;
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
@@ -120,6 +125,10 @@ ctx.fillRect(player2X + 2, player2Y - 2, 4, -ctx.canvas.height);
 if(player2Y - 12 >= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
 
 p2score++
+p1battery = 120;
+p2battery = 120;
+p1battery = 120;
+p2battery = 120;
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
@@ -137,6 +146,8 @@ ctx.fillRect(player2X + 2, player2Y + 12, 4, ctx.canvas.height);
 if(player2Y - 12 <= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
 
 p2score++
+p1battery = 120;
+p2battery = 120;
 
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
@@ -177,6 +188,8 @@ ctx.fillStyle = "purple";
 ctx.fillRect(player1X - 12, player1Y + 2, -ctx.canvas.width, 4);
 if(player1X - 12 >= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
 p1score++;
+p1battery = 120;
+p2battery = 120;
 
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
@@ -196,6 +209,8 @@ ctx.fillRect(player1X + 12, player1Y + 2, ctx.canvas.width, 4);
 
 if(player1X - 12 <= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
 p1score++;
+p1battery = 120;
+p2battery = 120;
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
@@ -215,6 +230,8 @@ ctx.fillRect(player1X + 2, player1Y - 2, 4, -ctx.canvas.height);
 if(player1Y - 12 >= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
 
 p1score++;
+p1battery = 120;
+p2battery = 120;
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
@@ -234,6 +251,8 @@ ctx.fillRect(player1X + 2, player1Y + 12, 4, ctx.canvas.height);
 if(player1Y - 12 <= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
 
 p1score++;
+p1battery = 120;
+p2battery = 120;
 
 player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
