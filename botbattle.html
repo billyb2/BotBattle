@@ -17,8 +17,8 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 document.documentElement.style.overflow = 'hidden';
 
+//Two different arrays so the alg. can check faster
 var keys = [];
-
 var p1s = false;
 var p2s = false;
 
@@ -290,8 +290,20 @@ player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 ctx.font = "48px serif";
 ctx.fillStyle = "red";
 ctx.fillText(p1score, 50, 100);
+if(p1battery > 0){
+	ctx.fillRect(100, 100, 50, p1battery);
+} else {
+	ctx.fillText("Reloading...", 100, 100);	
+}
 ctx.fillStyle = "blue";
 ctx.fillText(p2score, ctx.canvas.width-50, 100);
+if(p2battery > 0){
+	ctx.fillRect(ctx.canvas.width-50, 100, 50, p2battery);
+} else {
+	ctx.fillText("Reloading...", ctx.canvas.width-50, 100);	
+}
+	
+
 
 
 document.body.addEventListener("keydown", function(e) {
