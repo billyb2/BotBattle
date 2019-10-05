@@ -321,16 +321,16 @@ ctx.font = "48px serif";
 ctx.fillStyle = "red";
 ctx.fillText(p1score, 50, 100);
 if(p1battery > 0){
-	ctx.fillRect(100, 100, 50, p1battery);
+	ctx.fillRect(100, 100, p1battery, 50);
 } else {
 	ctx.fillText("Reloading...", 100, 100);	
 }
 ctx.fillStyle = "blue";
 ctx.fillText(p2score, ctx.canvas.width-50, 100);
 if(p2battery > 0){
-	ctx.fillRect(ctx.canvas.width-50, 100, 50, p2battery);
+	ctx.fillRect(ctx.canvas.width-150, 100, p2battery, 50);
 } else {
-	ctx.fillText("Reloading...", ctx.canvas.width-50, 100);	
+	ctx.fillText("Reloading...", ctx.canvas.width-150, 150);	
 }
 	
 
@@ -405,6 +405,26 @@ shootLaserP2();
 requestAnimationFrame(loop);
 }
 
-loop();
+ctx.font = "48px Arial";
+ctx.fillStyle = "red";
+ctx.fillText("BOT", ctx.canvas.width/2-120, 100);	
+ctx.fillStyle = "blue";
+ctx.fillText("BATTLE", ctx.canvas.width/2-40, 100);	
+
+ctx.fillRect(50, ctx.canvas.height/2, 150, 75);
+
+ctx.fillStyle = "red";
+
+ctx.fillRect(ctx.canvas.width - 250, ctx.canvas.height - ctx.canvas.height/2, 150, 75);
+ctx.fillText("1P", 100, ctx.canvas.height/2+50);	
+
+ctx.fillStyle = "blue";
+ctx.fillText("2P", ctx.canvas.width-200, ctx.canvas.height/2+50);	
+
+setInterval(function(){
+
+}, 1);
+
+//loop();
 
 	</script>
