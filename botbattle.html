@@ -15,10 +15,13 @@ var p2s = false;
 var p1cs = true;
 var p2cs = true;
 
+var p1size = 10;
+var p2size = 10;
+
 var p1battery = 60;
 var p2battery = 60;
 
-
+var mode;
 
 var player1X = Math.round(ctx.canvas.width/4);
 var player1Y = Math.round(ctx.canvas.height/2);
@@ -255,7 +258,7 @@ player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 
 ctx.fillStyle = "purple";
-ctx.fillRect(player1X + 2, player1Y + 12, 4, ctx.canvas.height);
+ctx.fillRect(player1X + 2, player1Y + p1size/2, p1size/2, ctx.canvas.height);
 
 
 if(player1Y - 12 <= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
@@ -264,11 +267,11 @@ p1score++;
 p1battery = 120;
 p2battery = 120;
 
-player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+player1X = Math.floor((Math.random() * ctx.canvas.width - p1size) + p1size);
+player1Y = Math.floor((Math.random() * ctx.canvas.height - p1size) + p1size);
 
-player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+player2X = Math.floor((Math.random() * ctx.canvas.width - p2size) + p2size);
+player2Y = Math.floor((Math.random() * ctx.canvas.height - p2size) + p2size);
 
 
 }
@@ -280,12 +283,12 @@ player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 function drawPlayer1(){
 ctx.fillStyle = "red";
-ctx.fillRect(player1X, player1Y, 10, 10);
+ctx.fillRect(player1X, player1Y, p1size, p1size);
 }
 
 function drawPlayer2(){
 ctx.fillStyle = "blue";
-ctx.fillRect(player2X, player2Y, 10, 10);
+ctx.fillRect(player2X, player2Y, p2size, p2size);
 }
 
 function drawGround(){
@@ -303,16 +306,27 @@ drawPlayer1();
 drawPlayer2();
 
 
-if(player1X >= ctx.canvas.width || player1X <= 0 || player1Y >= ctx.canvas.height || player1Y <= 0){
-player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+if (player1X + p1size >= ctx.canvas.width){
+	player1X = p1size;
+} else if(player1X <= 0){
+	player1X = ctx.canvas.width - p1size;
+} else if(player1Y + p1size >= ctx.canvas.height){
+	player1Y = p1size;
+} else if(player1Y <= 0){
+	player1Y = ctx.canvas.height - p1size;
 }
 
 
 
-if(player2X >= ctx.canvas.width || player2X <= 0 || player2Y >= ctx.canvas.height || player2Y <= 0){
-player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+if (player2X + p2size >= ctx.canvas.width){
+	player2X = p2size;
+} else if(player2X <= 0){
+	player2X = ctx.canvas.width - p2size;
+} else if(player2Y + p2size >= ctx.canvas.height){
+	player2Y = p2size;
+} else if(player2Y <= 0){
+	player2Y = ctx.canvas.height - p2size;
 }
 
 
@@ -421,10 +435,18 @@ ctx.fillText("1P", 100, ctx.canvas.height/2+50);
 ctx.fillStyle = "blue";
 ctx.fillText("2P", ctx.canvas.width-200, ctx.canvas.height/2+50);	
 
-setInterval(function(){
 
-}, 1);
+//If the player clicks on a button, perform that button's action.
+document.addEventListener("mousedown", function(e){
+    if(e.clientX >= 50 && e.clientX <= 150 && e.clientY >= ctx.canvas.height/2 && e.clientY <= ctx.canvas.height/2 + 150){
+    	mode = "1p";
+        loop();
+    } else if (e.clientX >= ctx.canvas.width - 250 && e.clientX <= ctx.canvas.width -100  && e.clientY >= ctx.canvas.height/2 && e.clientY <= ctx.canvas.height/2 + 150){
+    	mode = "2p";
+        loop();
+    }
+});
 
-//loop();
+
 
 	</script>
