@@ -387,36 +387,67 @@ shootLaserP1();
 
 
 
+	if(mode == "1p"){
+    	//Algorithm for bot
+        //No idea what ima do for a bot, gonna do some basic stuff for now
+        //Basic stuff, move to be on the same axis as the player, and shoot
+        
+        //randomly choose to  match either the X axis or the Y axis of the opposing player, and shoot. To make the bot a little less predictable, it redecides which axis to go on every 7 seconds or so.
+        
+	setTimeout(function(){
+    	var random = Math.random();
+    }, 8000);
+    
+    
+    	if (player2Y > player1Y){
+        	player2Y -= 7;
+        } else if (player2Y < player1Y){
+        	player2Y += 7;
+        } if (Math.abs(player2Y - player1Y) <= 6){
+        	if(player2X > player1X){
+            	player2X -= 7;
+                p2facing = "left";
+            } else {
+            	player2X += 7;
+                p2facing = "right";
+            }
+        	shootLaserP2();
+        }
+    
 
 
+    }	else if(mode == "2p"){
+
+		if (keys[87]) {
+			p2facing = "up";
+			player2Y -= 7;
+		}
 
 
-if (keys[87]) {
-p2facing = "up";
-player2Y -= 7;
+		if (keys[68]) {
+			p2facing = "right";
+			player2X += 7;
+		}
+
+		if (keys[83]) {
+			p2facing = "down";
+			player2Y += 7;
+		}
+    
+		if (keys[65]) {
+			p2facing = "left";
+			player2X -= 7;
+		}
+
+		if(keys[81] && p2cs == true){
+			shootLaserP2();
+		}
+
+
 }
 
 
-if (keys[68]) {
-p2facing = "right";
-player2X += 7;
-}
-
-if (keys[83]) {
-p2facing = "down";
-player2Y += 7;
-}
-
-if (keys[65]) {
-p2facing = "left";
-player2X -= 7;
-}
-
-if(keys[81] && p2cs == true){
-shootLaserP2();
-}
-
-requestAnimationFrame(loop);
+	requestAnimationFrame(loop);
 }
 
 ctx.font = "48px Arial";
@@ -438,13 +469,18 @@ ctx.fillText("2P", ctx.canvas.width-200, ctx.canvas.height/2+50);
 
 //If the player clicks on a button, perform that button's action.
 document.addEventListener("mousedown", function(e){
+var set = false;
+if(set == false){
     if(e.clientX >= 50 && e.clientX <= 150 && e.clientY >= ctx.canvas.height/2 && e.clientY <= ctx.canvas.height/2 + 150){
     	mode = "1p";
         loop();
+        set = true;
     } else if (e.clientX >= ctx.canvas.width - 250 && e.clientX <= ctx.canvas.width -100  && e.clientY >= ctx.canvas.height/2 && e.clientY <= ctx.canvas.height/2 + 150){
     	mode = "2p";
         loop();
+        set = true;
     }
+}
 });
 
 
