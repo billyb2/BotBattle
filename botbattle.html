@@ -466,10 +466,11 @@ ctx.fillText("1P", 100, ctx.canvas.height/2+50);
 ctx.fillStyle = "blue";
 ctx.fillText("2P", ctx.canvas.width-200, ctx.canvas.height/2+50);	
 
+var set = false;
+
 
 //If the player clicks on a button, perform that button's action.
 document.addEventListener("mousedown", function(e){
-var set = false;
 if(set == false){
     if(e.clientX >= 50 && e.clientX <= 150 && e.clientY >= ctx.canvas.height/2 && e.clientY <= ctx.canvas.height/2 + 150){
     	mode = "1p";
