@@ -15,11 +15,15 @@ var p2s = false;
 var p1cs = true;
 var p2cs = true;
 
+//Remember to fix the size and collision algorithm
 var p1size = 10;
 var p2size = 10;
 
 var p1battery = 60;
 var p2battery = 60;
+
+var p1health = 20;
+var p2health = 20;
 
 var mode;
 
@@ -83,7 +87,13 @@ if(p2facing == "left"){
 	ctx.fillStyle = "purple";
 	ctx.fillRect(player2X - 12, player2Y + 2, -ctx.canvas.width, 4);
 	if(player2X - 12 >= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
-p2score++
+	p1health -= 0.5;
+	if (p1health <= 0){
+		p2score++
+        p1health = 20;
+        p2health = 20;
+
+	
 p1battery = 120;
 p2battery = 120;
 
@@ -94,7 +104,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
-
+}
 
 }
 } else if(p2facing == "right"){
@@ -104,16 +114,24 @@ ctx.fillRect(player2X + 12, player2Y + 2, ctx.canvas.width, 4);
 
 
 if(player2X - 12 <= player1X && player2Y + 2 >= player1Y && player2Y + 6 <= player1Y + 10){
-p2score++
-p1battery = 120;
-p2battery = 120;
 
-player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+	p1health -= 0.5;
+	if (p1health <= 0){
+		p2score++
+        p1health = 20;
+        p2health = 20;
 
-player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
-player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+    
+	p1battery = 120;
+	p2battery = 120;
 
+	player1X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+	player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+	player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
+	player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+
+}
 
 }
 
@@ -125,9 +143,16 @@ ctx.fillRect(player2X + 2, player2Y - 2, 4, -ctx.canvas.height);
 
 if(player2Y - 12 >= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
 
-p2score++
-p1battery = 120;
-p2battery = 120;
+	p1health -= 0.5;
+	if (p1health <= 0){
+        p1health = 20;
+        p2health = 20;
+        
+		p2score++
+
+
+	
+    
 p1battery = 120;
 p2battery = 120;
 
@@ -136,6 +161,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
+}
 
 }
 
@@ -146,7 +172,14 @@ ctx.fillRect(player2X + 2, player2Y + 12, 4, ctx.canvas.height);
 
 if(player2Y - 12 <= player1Y && player2X + 2 >= player1X && player2X + 6 <= player1X + 10){
 
-p2score++
+	p1health -= 0.5;
+	if (p1health <= 0){
+		p2score++
+        p1health = 20;
+        p2health = 20;
+	
+    
+
 p1battery = 120;
 p2battery = 120;
 
@@ -157,7 +190,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
-
+}
 
 }
 
@@ -200,7 +233,14 @@ if(p1facing == "left"){
 ctx.fillStyle = "purple";
 ctx.fillRect(player1X - 12, player1Y + 2, -ctx.canvas.width, 4);
 if(player1X - 12 >= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
-p1score++;
+
+	p2health -= 0.5;
+	if (p2health <= 0){
+		p1score++
+        p1health = 20;
+        p2health = 20;
+
+
 p1battery = 120;
 p2battery = 120;
 
@@ -210,7 +250,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
-
+}
 
 }
 } else if(p1facing == "right"){
@@ -221,7 +261,13 @@ ctx.fillRect(player1X + 12, player1Y + 2, ctx.canvas.width, 4);
 
 
 if(player1X - 12 <= player2X && player1Y + 2 >= player2Y && player1Y + 6 <= player2Y + 10){
-p1score++;
+
+	p2health -= 0.5;
+	if (p2health <= 0){
+		p1score++
+        p1health = 20;
+        p2health = 20;
+
 p1battery = 120;
 p2battery = 120;
 
@@ -230,7 +276,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
-
+}
 
 }
 
@@ -242,7 +288,12 @@ ctx.fillRect(player1X + 2, player1Y - 2, 4, -ctx.canvas.height);
 
 if(player1Y - 12 >= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
 
-p1score++;
+	p2health -= 0.5;
+	if (p2health <= 0){
+		p1score++
+        p1health = 20;
+        p2health = 20;
+
 p1battery = 120;
 p2battery = 120;
 
@@ -251,7 +302,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - 10) + 10);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - 10) + 10);
-
+}
 }
 
 } else if(p1facing == "down"){
@@ -263,7 +314,12 @@ ctx.fillRect(player1X + 2, player1Y + p1size/2, p1size/2, ctx.canvas.height);
 
 if(player1Y - 12 <= player2Y && player1X + 2 >= player2X && player1X + 6 <= player2X + 10){
 
-p1score++;
+	p2health -= 0.5;
+	if (p2health <= 0){
+		p1score++
+        p1health = 20;
+        p2health = 20;
+
 p1battery = 120;
 p2battery = 120;
 
@@ -272,7 +328,7 @@ player1Y = Math.floor((Math.random() * ctx.canvas.height - p1size) + p1size);
 
 player2X = Math.floor((Math.random() * ctx.canvas.width - p2size) + p2size);
 player2Y = Math.floor((Math.random() * ctx.canvas.height - p2size) + p2size);
-
+}
 
 }
 
@@ -333,6 +389,7 @@ if (player2X + p2size >= ctx.canvas.width){
 
 ctx.font = "48px serif";
 ctx.fillStyle = "red";
+ctx.fillText(p1health, 50, 50);
 ctx.fillText(p1score, 50, 100);
 if(p1battery > 0){
 	ctx.fillRect(100, 100, p1battery, 50);
@@ -340,7 +397,9 @@ if(p1battery > 0){
 	ctx.fillText("Reloading...", 100, 100);	
 }
 ctx.fillStyle = "blue";
-ctx.fillText(p2score, ctx.canvas.width-50, 100);
+ctx.fillText(p2score, ctx.canvas.width-150, 100);
+ctx.fillText(p2health, ctx.canvas.with-150, 50);
+
 if(p2battery > 0){
 	ctx.fillRect(ctx.canvas.width-150, 100, p2battery, 50);
 } else {
